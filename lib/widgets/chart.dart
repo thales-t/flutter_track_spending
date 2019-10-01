@@ -11,18 +11,21 @@ class Chart extends StatelessWidget {
     return List.generate(7, (index) {
       final weekDay = DateTime.now().subtract(
         Duration(days: index),
-        );
+      );
       var totalSum = 0.0;
 
-      for (var i =0; i < recentTransactions.length; i++) {
+      for (var i = 0; i < recentTransactions.length; i++) {
         if (recentTransactions[i].date.day == weekDay.day &&
-        recentTransactions[i].date.month == weekDay.month &&
-        recentTransactions[i].date.year == weekDay.year) {
-          totalSum += recentTransactions[i].amount;    
+            recentTransactions[i].date.month == weekDay.month &&
+            recentTransactions[i].date.year == weekDay.year) {
+          totalSum += recentTransactions[i].amount;
         }
       }
-      
-      return {'day': DateFormat.E(weekDay), 'amount': totalSum};
+
+      return {
+        'day': DateFormat.E().format(weekDay),
+        'amount': totalSum,
+      };
     });
   }
 
@@ -31,9 +34,9 @@ class Chart extends StatelessWidget {
     return Card(
       elevation: 6,
       margin: EdgeInsets.all(20),
-      child: Row(children: <Widget>[
-        
-      ],),
+      child: Row(
+        children: <Widget>[],
+      ),
     );
   }
 }
